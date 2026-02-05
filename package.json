@@ -1,0 +1,16 @@
+{
+    "name": "09.js-applications-workshop-end-to-end-applications-resources",
+    "version": "1.0.0",
+    "description": "Quiz Fever is a modular single‑page application built with JavaScript, lit-html, and page.js, designed to create, browse, solve, and manage interactive quizzes. The project integrates with Back4App (Parse Server) for user authentication, quiz storage, question management, and solution tracking.",
+    "main": "index.js",
+    "scripts": {
+        "start": "cd server && node server.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "lit-html": "^3.3.2",
+        "page": "^1.11.6"
+    }
+}
