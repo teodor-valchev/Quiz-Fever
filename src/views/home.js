@@ -1,4 +1,4 @@
-import { render, html } from "../../node_modules/lit-html/lit-html.js";
+import { html, render } from "https://unpkg.com/lit-html?module";
 
 const homeTemplate = () => html`
     <section id="welcome">
