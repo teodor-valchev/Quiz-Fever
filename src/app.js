@@ -1,5 +1,8 @@
 import page from "https://unpkg.com/page/page.mjs";
 import { homeView } from "./views/home.js";
+import { registerView } from "./views/register.js";
+import { loginView } from "./views/login.js";
+
 import { InitializeBack4AppConnection } from "./API/back4app.js";
 
 const rootElement = document.getElementById("content");
@@ -13,6 +16,8 @@ page("*", renderContainer);
 page("/Quiz-Fever/", () => page.redirect("/"));
 
 page("/", homeView);
+page("/register", registerView);
+page("/login", loginView);
 
 function renderContainer(ctx, next) {
     ctx.render = rootElement;
