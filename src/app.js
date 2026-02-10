@@ -4,6 +4,7 @@ import { registerView } from "./views/register.js";
 import { loginView } from "./views/login.js";
 
 import { InitializeBack4AppConnection } from "./API/back4app.js";
+import { notFoundView } from "./views/notFound.js";
 
 const rootElement = document.getElementById("content");
 
@@ -18,6 +19,7 @@ page("/Quiz-Fever/", () => page.redirect("/"));
 page("/", homeView);
 page("/register", registerView);
 page("/login", loginView);
+page("/404", notFoundView);
 
 function renderContainer(ctx, next) {
     ctx.render = rootElement;

@@ -1,0 +1,108 @@
+:root {
+    --yellow: #f7d54a;
+    --green: #2ecc71;
+    --green-dark: #27ae60;
+    --orange: #ff7a00;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--yellow);
+    font-family: "Segoe UI", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* Background pattern */
+.pattern {
+    position: fixed;
+    inset: 0;
+    background-image:
+        radial-gradient(#000 2px, transparent 2px),
+        radial-gradient(#000 2px, transparent 2px);
+    background-size: 40px 40px;
+    background-position:
+        0 0,
+        20px 20px;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.wrapper {
+    position: relative;
+    z-index: 2;
+    max-width: 90%;
+    width: 420px;
+    background: #fff;
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.logo {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--orange);
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    margin: 0 0 10px;
+    color: #222;
+}
+
+p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    margin: 0 0 20px;
+    color: #444;
+}
+
+a {
+    display: inline-block;
+    padding: 12px 24px;
+    background: var(--green);
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s;
+    font-size: 1rem;
+}
+
+a:hover {
+    background: var(--green-dark);
+}
+
+.code {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #666;
+    opacity: 0.8;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+#content {
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+    .wrapper {
+        padding: 30px 20px;
+    }
+    .logo {
+        font-size: 3rem;
+    }
+}
