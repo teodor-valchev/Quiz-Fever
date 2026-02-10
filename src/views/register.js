@@ -1,4 +1,7 @@
 import { html, render } from "https://unpkg.com/lit-html?module";
+import page from "https://unpkg.com/page/page.mjs";
+
+import { registerRequest } from "../API/authService.js";
 
 const registerTemplate = () => html`
     <section id="register">
@@ -8,7 +11,7 @@ const registerTemplate = () => html`
                     <a class="tab-item" href="/login">Login</a>
                     <h1 class="tab-item active">Register</h1>
                 </header>
-                <form class="pad-med centered">
+                <form @submit=${registerHandler} class="pad-med centered">
                     <label class="block centered"
                         >Username:
                         <input
@@ -55,3 +58,31 @@ const registerTemplate = () => html`
 export const registerView = (ctx) => {
     render(registerTemplate(), ctx.render);
 };
+
+async function registerHandler(e) {
+    e.preventDefault();
+
+    try {
+        const data = new FormData(e.target);
+        const { username, email, password, repass } = Object.fromEntries(data);
+
+        if (username == "" || email == '' || password == "" || repass == '') {
+            throw new Error("All fields are required!");
+        }
+
+        if (password !== repass) {
+            throw new Error("Password mismatch!");
+        }
+
+        const res = await registerRequest(username, email,password);
+
+        if (!res) {
+            throw new Error("Wrong email or password!");
+        }
+
+        page.redirect("/");
+    } catch (err) {
+        alert(err.message);
+    }
+}
+

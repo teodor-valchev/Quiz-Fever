@@ -1,4 +1,5 @@
 import { config } from "./keys.js";
+
 async function InitializeBack4AppConnection() {
     Parse.initialize(config.appId, config.jsKey);
     Parse.serverURL = config.serverUrl;
@@ -18,7 +19,7 @@ async function signUp(data) {
     try {
         const user = new Parse.User();
         await user.set("username", data.username);
-        await user.set("password", data.password || "123456");
+        await user.set("password", data.password);
         await user.set("email", data.email);
 
         await user.save();
