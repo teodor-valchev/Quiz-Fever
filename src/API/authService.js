@@ -1,3 +1,5 @@
+import { signUp } from "./back4app.js";
+
 const BASE_URL = "http://localhost:3030/users";
 
 export const loginRequest = async (email, password) => {
@@ -16,8 +18,14 @@ export const loginRequest = async (email, password) => {
 
         if (response.ok) {
             const user = await response.json();
-            localStorage.setItem("accessToken", user.accessToken);
 
+            const result = await signUp(user);
+
+            if (result == 202 || result == 203) {
+                return;
+            }
+
+            localStorage.setItem("accessToken", user.accessToken);
             return user;
         }
     } catch (error) {

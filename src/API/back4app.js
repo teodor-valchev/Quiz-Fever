@@ -3,7 +3,7 @@ async function InitializeBack4AppConnection() {
     Parse.initialize(config.appId, config.jsKey);
     Parse.serverURL = config.serverUrl;
     // Peter ID: LoEqVbURO9
-    const query = new Parse.Query("Users");
+    const query = new Parse.Query("User");
 
     try {
         const player = await query.get("LoEqVbURO9");
@@ -13,4 +13,20 @@ async function InitializeBack4AppConnection() {
     }
 }
 
-export { InitializeBack4AppConnection };
+async function signUp(data) {
+    try {
+        const user = new Parse.User();
+        await user.set("username", data.username);
+        await user.set("password", data.password || "123456");
+        await user.set("email", data.email);
+
+        await user.save();
+
+        return user;
+    } catch (error) {
+        alert("Error: " + error.code + " " + error.message);
+        return error.code;
+    }
+}
+
+export { InitializeBack4AppConnection, signUp };
