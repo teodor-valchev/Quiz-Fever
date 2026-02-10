@@ -1,4 +1,7 @@
 import { html, render } from "https://unpkg.com/lit-html?module";
+import page from "https://unpkg.com/page/page.mjs";
+
+import { loginRequest } from "../API/authService.js";
 
 const loginTemplate = () => html`
     <section id="login">
@@ -42,7 +45,7 @@ export const loginView = (ctx) => {
     render(loginTemplate(), ctx.render);
 };
 
-function loginHandler(e) {
+async function loginHandler(e) {
     e.preventDefault();
 
     try {
@@ -52,6 +55,14 @@ function loginHandler(e) {
         if (email == "" || password == "") {
             throw new Error("All fields are required!");
         }
+
+        const res = await loginRequest(email, password);
+
+        if (!res) {
+            throw new Error("Wrong email or password");
+        }
+
+        page.redirect("/");
     } catch (err) {
         alert(err.message);
     }
