@@ -13,6 +13,7 @@ async function InitializeBack4AppConnection() {
     }
 }
 
+//Register a new user
 async function signUp(data) {
     try {
         const user = new Parse.User();
@@ -29,4 +30,20 @@ async function signUp(data) {
     }
 }
 
-export { InitializeBack4AppConnection, signUp };
+// Login Check
+async function signIn() {
+    try {
+        const user = Parse.User.current();
+
+        if (!user) {
+            return;
+        }
+
+        return user;
+    } catch (error) {
+        alert("Error: " + error.code + " " + error.message);
+        return error.code;
+    }
+}
+
+export { InitializeBack4AppConnection, signUp, signIn };

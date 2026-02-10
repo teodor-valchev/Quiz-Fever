@@ -1,4 +1,4 @@
-import { signUp } from "./back4app.js";
+import { signIn } from "./back4app.js";
 
 const BASE_URL = "http://localhost:3030/users";
 
@@ -19,7 +19,7 @@ export const loginRequest = async (email, password) => {
         if (response.ok) {
             const user = await response.json();
 
-            const result = await signUp(user);
+            const result = await signIn();
 
             if (result == 202 || result == 203) {
                 return;
