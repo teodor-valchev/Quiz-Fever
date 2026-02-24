@@ -1,14 +1,9 @@
 import { config } from "./keys.js";
 
 async function InitializeBack4AppConnection() {
-    Parse.initialize(config.appId, config.jsKey);
-    Parse.serverURL = config.serverUrl;
-    // Peter ID: LoEqVbURO9
-    const query = new Parse.Query("User");
-
     try {
-        const player = await query.get("LoEqVbURO9");
-        console.log(player);
+        Parse.initialize(config.appId, config.jsKey);
+        Parse.serverURL = config.serverUrl;
     } catch (error) {
         console.error("Error retrieving object: " + error.message);
     }

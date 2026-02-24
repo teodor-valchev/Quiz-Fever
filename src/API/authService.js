@@ -64,3 +64,20 @@ export const registerRequest = async (username, email, password) => {
         alert(error.message);
     }
 };
+
+export const logoutRequest = async (token) => {
+    try {
+        const response = await fetch(`${BASE_URL}/logout`, {
+            headers: {
+                "X-Authorization": token,
+            },
+        });
+
+        if (response.ok) {
+            return true;
+        }
+        throw new Error(response);
+    } catch (error) {
+        console.log(error.message);
+    }
+};
