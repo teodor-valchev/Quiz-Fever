@@ -7,6 +7,7 @@ import { loginView } from "./views/login.js";
 import { InitializeBack4AppConnection } from "./API/back4app.js";
 import { notFoundView } from "./views/notFound.js";
 import { navView } from "./views/nav.js";
+import { browseView } from "./views/browse.js";
 
 const rootElement = document.getElementById("content");
 const navElement = document.getElementById("titlebar");
@@ -20,6 +21,8 @@ page("*", renderContainer);
 //page("/Quiz-Fever/", () => page.redirect("/"));
 
 page("/", navView, homeView);
+
+page("/browse", browseView);
 page("/register", registerView);
 page("/login", loginView);
 page("/404", notFoundView);
