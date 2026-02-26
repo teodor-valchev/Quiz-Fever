@@ -1,7 +1,7 @@
 import { html, render } from "https://unpkg.com/lit-html?module";
 import page from "https://unpkg.com/page/page.mjs";
 
-import { loginRequest } from "../API/authService.js";
+import { signIn } from "../API/back4app.js";
 
 const loginTemplate = () => html`
     <section id="login">
@@ -56,10 +56,10 @@ async function loginHandler(e) {
             throw new Error("All fields are required!");
         }
 
-        const res = await loginRequest(email, password);
+        const res = await signIn(email, password);
 
-        if (!res) {
-            throw new Error("Wrong email or password");
+        if (res == 101) {
+            return;
         }
 
         page.redirect("/");

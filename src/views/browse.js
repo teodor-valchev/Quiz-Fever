@@ -1,4 +1,5 @@
 import { html, render } from "https://unpkg.com/lit-html?module";
+import { getAllQuizzes } from "../API/back4app.js";
 
 const browseTemplate = () =>
     html` <section id="browse">

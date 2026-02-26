@@ -27,19 +27,29 @@ async function signUp(data) {
 }
 
 // Login Check
-async function signIn() {
+async function signIn(email, password) {
     try {
-        const user = Parse.User.current();
-
-        if (!user) {
-            return;
-        }
-
-        return user;
+        await Parse.User.logIn(email, password);
     } catch (error) {
         alert("Error: " + error.code + " " + error.message);
         return error.code;
     }
 }
 
-export { InitializeBack4AppConnection, signUp, signIn };
+async function getAllQuizzes() {
+    try {
+        const Quizzes = Parse.Object.extend("Quizzes");
+        const query = new Parse.Query(Quizzes);
+
+        query.equalTo("topic", "history");
+        const results = await query.find();
+
+        console.log(results);
+        return results;
+    } catch (error) {
+        alert("Error: " + error.code + " " + error.message);
+        return null;
+    }
+}
+
+export { InitializeBack4AppConnection, signUp, signIn, getAllQuizzes };

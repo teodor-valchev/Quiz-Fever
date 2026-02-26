@@ -1,7 +1,7 @@
 import { html, render } from "https://unpkg.com/lit-html?module";
 import page from "https://unpkg.com/page/page.mjs";
 
-import { registerRequest } from "../API/authService.js";
+import { signUp } from "../API/back4app.js";
 
 const registerTemplate = () => html`
     <section id="register">
@@ -66,15 +66,20 @@ async function registerHandler(e) {
         const data = new FormData(e.target);
         const { username, email, password, repass } = Object.fromEntries(data);
 
-        if (username == "" || email == '' || password == "" || repass == '') {
+        if (username == "" || email == "" || password == "" || repass == "") {
             throw new Error("All fields are required!");
         }
 
         if (password !== repass) {
             throw new Error("Password mismatch!");
         }
+        const singUpData = {
+            username,
+            email,
+            password,
+        };
 
-        const res = await registerRequest(username, email,password);
+        const res = await signUp(singUpData);
 
         if (!res) {
             throw new Error("Wrong email or password!");
@@ -85,4 +90,3 @@ async function registerHandler(e) {
         alert(err.message);
     }
 }
-

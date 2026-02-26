@@ -1,8 +1,6 @@
 import { html, render } from "https://unpkg.com/lit-html?module";
 import page from "https://unpkg.com/page/page.mjs";
 
-import { logoutRequest } from "../API/authService.js";
-
 const navTemplate = (isAuth) => html`
     <nav>
         <a class="logotype" href="/">
@@ -47,7 +45,6 @@ export const navView = (ctx, next) => {
 const logoutHandler = async () => {
     const user = localStorage.getItem("accessToken");
     if (user) {
-        await logoutRequest(user);
         alert("User successfully logged out!");
         localStorage.clear();
         page.redirect("/");
