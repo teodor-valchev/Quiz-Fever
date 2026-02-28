@@ -8,6 +8,7 @@ import { InitializeBack4AppConnection } from "./API/back4app.js";
 import { notFoundView } from "./views/notFound.js";
 import { navView } from "./views/nav.js";
 import { browseView } from "./views/browse.js";
+import { quizDetailsView } from "./views/details.js";
 
 const rootElement = document.getElementById("content");
 const navElement = document.getElementById("titlebar");
@@ -25,6 +26,7 @@ page("/", navView, homeView);
 page("/browse", browseView);
 page("/register", registerView);
 page("/login", loginView);
+page("/details/:id", quizDetailsView)
 page("/404", notFoundView);
 
 function renderContainer(ctx, next) {

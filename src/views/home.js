@@ -23,7 +23,7 @@ const homeTemplate = () => html`
 
             <article class="preview layout">
                 <div class="right-col">
-                    <a class="action cta" href="/quiz/:id">View Quiz</a>
+                    <a class="action cta" href="/details/:id">View Quiz</a>
                 </div>
                 <div class="left-col">
                     <h3>Extensible Markup Language</h3>
@@ -37,7 +37,7 @@ const homeTemplate = () => html`
             </article>
 
             <div>
-                <a class="action cta" href="/quizzes">Browse all quizzes</a>
+                <a class="action cta" href="/browse">Browse all quizzes</a>
             </div>
         </div>
     </section>

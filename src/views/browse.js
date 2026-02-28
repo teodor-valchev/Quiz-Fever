@@ -40,11 +40,11 @@ const quizArticle = (quiz) => {
 
     return html` <article class="preview layout">
         <div class="right-col">
-            <a class="action cta" href="${id}">View Quiz</a>
+            <a class="action cta" href="/details/${id}">View Quiz</a>
         </div>
         <div class="left-col">
             <h3>
-                <a class="quiz-title-link" href="${id}">${title}</a>
+                <a class="quiz-title-link" href="/details/${id}">${title}</a>
             </h3>
             <span class="quiz-topic">Topic: ${topic}</span>
             <div class="quiz-meta">

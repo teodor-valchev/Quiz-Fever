@@ -54,8 +54,23 @@ async function getAllQuizzes() {
 
         const results = await query.find();
 
-
         return results;
+    } catch (error) {
+        alert("Error: " + error.code + " " + error.message);
+        return null;
+    }
+}
+
+async function getQuizDetails(id) {
+    try {
+        const Quizzes = Parse.Object.extend("Quizzes");
+        const query = new Parse.Query(Quizzes);
+
+        query.equalTo("objectId", id);
+
+        const quiz = await query.first();
+
+        return quiz;
     } catch (error) {
         alert("Error: " + error.code + " " + error.message);
         return null;
@@ -67,6 +82,7 @@ export {
     signUp,
     signIn,
     getAllQuizzes,
+    getQuizDetails,
     isLoggedIn,
     logout,
 };

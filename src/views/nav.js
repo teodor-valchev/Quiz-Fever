@@ -36,10 +36,10 @@ const navTemplate = (isAuth) => html`
     </nav>
 `;
 
-export const navView = async (ctx, next) => {
-    const isAuth = await isLoggedIn();
+export const isAuth = () => isLoggedIn();
 
-    render(navTemplate(isAuth), ctx.navigation);
+export const navView = async (ctx, next) => {
+    render(navTemplate(await isAuth()), ctx.navigation);
     next();
 };
 
