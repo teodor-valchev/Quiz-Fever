@@ -1,6 +1,8 @@
 import { html, render } from "https://unpkg.com/lit-html?module";
 import page from "https://unpkg.com/page/page.mjs";
 
+import { isLoggedIn, logout } from "../API/back4app.js";
+
 const navTemplate = (isAuth) => html`
     <nav>
         <a class="logotype" href="/">
@@ -34,19 +36,15 @@ const navTemplate = (isAuth) => html`
     </nav>
 `;
 
-const isAuth = () => Boolean(localStorage.getItem("accessToken"));
+export const navView = async (ctx, next) => {
+    const isAuth = await isLoggedIn();
 
-export const navView = (ctx, next) => {
-    render(navTemplate(isAuth()), ctx.navigation);
+    render(navTemplate(isAuth), ctx.navigation);
     next();
 };
 
 //TODO: Maybe i have to do something with the session in back4app???
-const logoutHandler = async () => {
-    const user = localStorage.getItem("accessToken");
-    if (user) {
-        alert("User successfully logged out!");
-        localStorage.clear();
-        page.redirect("/");
-    }
+const logoutHandler = () => {
+    logout();
+    page.redirect("/");
 };

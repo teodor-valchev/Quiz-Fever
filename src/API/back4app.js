@@ -36,6 +36,17 @@ async function signIn(email, password) {
     }
 }
 
+async function isLoggedIn() {
+    const currentUser = Parse.User.current();
+    return !!currentUser;
+}
+
+function logout() {
+    Parse.User.logOut().then(() => {
+        Parse.User.current();
+    });
+}
+
 async function getAllQuizzes() {
     try {
         const Quizzes = Parse.Object.extend("Quizzes");
@@ -52,4 +63,11 @@ async function getAllQuizzes() {
     }
 }
 
-export { InitializeBack4AppConnection, signUp, signIn, getAllQuizzes };
+export {
+    InitializeBack4AppConnection,
+    signUp,
+    signIn,
+    getAllQuizzes,
+    isLoggedIn,
+    logout,
+};
