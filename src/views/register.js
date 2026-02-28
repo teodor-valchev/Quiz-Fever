@@ -85,7 +85,7 @@ async function registerHandler(e) {
             throw new Error("Wrong email or password!");
         }
 
-        page.redirect("/");
+        page.redirect("/Quiz-Fever");
     } catch (err) {
         alert(err.message);
     }
