@@ -1,9 +1,9 @@
-import { config } from "../API/keys.js";
+import { API_KEYS } from "../../public/keys.js";
 
 async function InitializeBack4AppConnection() {
     try {
-        Parse.initialize(config.appId, config.jsKey);
-        Parse.serverURL = config.serverUrl;
+        Parse.initialize(API_KEYS.appId, API_KEYS.jsKey);
+        Parse.serverURL = API_KEYS.serverUrl;
     } catch (error) {
         console.error(error.message);
     }
