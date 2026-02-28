@@ -8,7 +8,7 @@ const registerTemplate = () => html`
         <div class="pad-large">
             <div class="glass narrow">
                 <header class="tab layout">
-                    <a class="tab-item" href="/login">Login</a>
+                    <a class="tab-item" href="/Quiz-Fever/login">Login</a>
                     <h1 class="tab-item active">Register</h1>
                 </header>
                 <form @submit=${registerHandler} class="pad-med centered">
@@ -48,7 +48,7 @@ const registerTemplate = () => html`
                 </form>
                 <footer class="tab-footer">
                     Already have an account?
-                    <a class="invert" href="/login">Sign in here</a>.
+                    <a class="invert" href="/Quiz-Fever/login">Sign in here</a>.
                 </footer>
             </div>
         </div>
