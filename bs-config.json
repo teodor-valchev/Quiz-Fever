@@ -1,5 +1,8 @@
 {
     "server": {
-        "baseDir": ["./public", "./"]
+        "baseDir": ["./public", "./"],
+        "routes": {
+            "/node_modules": "node_modules"
+        }
     }
 }
