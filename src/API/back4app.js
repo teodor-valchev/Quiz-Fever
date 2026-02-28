@@ -1,12 +1,9 @@
-import { API_KEYS } from "../public/keys.js";
-
-async function InitializeBack4AppConnection() {
-    try {
-        Parse.initialize(API_KEYS.appId, API_KEYS.jsKey);
-        Parse.serverURL = API_KEYS.serverUrl;
-    } catch (error) {
-        console.error(error.message);
-    }
+async function initializeBack4App() {
+    Parse.initialize(
+        "zpxinHuWZtScpiIaxsxFBiWZ4dE2rc10DBtWGb0z",
+        "MmBPkPaQnl9pddP2iOrVo5E25AYa3mdE07jQqubS",
+    );
+    Parse.serverURL = "https://parseapi.back4app.com/";
 }
 
 //Register a new user
@@ -78,7 +75,7 @@ async function getQuizDetails(id) {
 }
 
 export {
-    InitializeBack4AppConnection,
+    initializeBack4App,
     signUp,
     signIn,
     getAllQuizzes,

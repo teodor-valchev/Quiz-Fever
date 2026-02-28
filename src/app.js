@@ -4,7 +4,7 @@ import { homeView } from "./views/home.js";
 import { registerView } from "./views/register.js";
 import { loginView } from "./views/login.js";
 
-import { InitializeBack4AppConnection } from "./API/back4app.js";
+import { initializeBack4App } from "./API/back4app.js";
 import { notFoundView } from "./views/notFound.js";
 import { navView } from "./views/nav.js";
 import { browseView } from "./views/browse.js";
@@ -14,7 +14,10 @@ const rootElement = document.getElementById("content");
 const navElement = document.getElementById("titlebar");
 
 // Establishing connection to back4app backend
-InitializeBack4AppConnection();
+initializeBack4App().then(() => {
+    console.log("App is ready");
+});
+
 
 page("*", renderContainer);
 
