@@ -1,4 +1,4 @@
-import { API_KEYS } from "../../public/keys.js";
+import { API_KEYS } from "/keys.js";
 
 async function InitializeBack4AppConnection() {
     try {
