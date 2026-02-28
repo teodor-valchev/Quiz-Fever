@@ -12,7 +12,7 @@ const homeTemplate = () => html`
                     Home to 157 quizzes in 12 topics.
                     <a href="/browse">Browse all quizzes</a>.
                 </p>
-                <a class="action cta" href="/register"
+                <a class="action cta" href="/Quiz-Fever/register"
                     >Sign in to create a quiz</a
                 >
             </div>
@@ -23,7 +23,9 @@ const homeTemplate = () => html`
 
             <article class="preview layout">
                 <div class="right-col">
-                    <a class="action cta" href="/details/:id">View Quiz</a>
+                    <a class="action cta" href="/Quiz-Fever/details/:id"
+                        >View Quiz</a
+                    >
                 </div>
                 <div class="left-col">
                     <h3>Extensible Markup Language</h3>

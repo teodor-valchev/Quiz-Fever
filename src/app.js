@@ -27,15 +27,15 @@ initializeBack4App().then(() => {
 page("*", renderContainer);
 
 //TODO: think about how you can make it work on production
-//page("/Quiz-Fever/", () => page.redirect("/"));
+page("/", () => page.redirect("/Quiz-Fever"));
 
-page("/", navView, homeView);
+page("/Quiz-Fever/", navView, homeView);
 
-page("/browse", browseView);
-page("/register", registerView);
-page("/login", loginView);
-page("/details/:id", quizDetailsView);
-page("/404", notFoundView);
+page("/Quiz-Fever/browse", browseView);
+page("/Quiz-Fever/register", registerView);
+page("/Quiz-Fever/login", loginView);
+page("/Quiz-Fever/details/:id", quizDetailsView);
+page("/Quiz-Fever/404", notFoundView);
 
 function renderContainer(ctx, next) {
     ctx.render = rootElement;

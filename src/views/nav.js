@@ -5,18 +5,18 @@ import { isLoggedIn, logout } from "../API/back4app.js";
 
 const navTemplate = (isAuth) => html`
     <nav>
-        <a class="logotype" href="/">
+        <a class="logotype" href="/Quiz-Fever">
             <i class="fas fa-question-circle"></i>
             <i class="merge fas fa-check-circle"></i>
             <span>Quiz Fever</span>
         </a>
 
         <div class="navigation">
-            <a class="nav-link" href="/browse">Browse</a>
+            <a class="nav-link" href="/Quiz-Fever/browse">Browse</a>
 
             ${isAuth
                 ? html` <div id="user-nav">
-                      <a class="nav-link" href="/create">Create</a>
+                      <a class="nav-link" href="/Quiz-Fever/create">Create</a>
                       <a class="nav-link profile-link" href="#">
                           <i class="fas fa-user-circle"></i>
                       </a>
@@ -30,7 +30,7 @@ const navTemplate = (isAuth) => html`
                       </a>
                   </div>`
                 : html` <div id="guest-nav">
-                      <a class="nav-link" href="/login">Sign in</a>
+                      <a class="nav-link" href="/Quiz-Fever/login">Sign in</a>
                   </div>`}
         </div>
     </nav>
@@ -46,5 +46,5 @@ export const navView = async (ctx, next) => {
 //TODO: Maybe i have to do something with the session in back4app???
 const logoutHandler = () => {
     logout();
-    page.redirect("/");
+    page.redirect("/Quiz-Fever");
 };

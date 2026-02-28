@@ -9,7 +9,7 @@ const loginTemplate = () => html`
             <div class="glass narrow">
                 <header class="tab layout">
                     <h1 class="tab-item active">Login</h1>
-                    <a class="tab-item" href="/register">Register</a>
+                    <a class="tab-item" href="/Quiz-Fever/register">Register</a>
                 </header>
                 <form @submit=${loginHandler} class="pad-med centered">
                     <label class="block centered"
@@ -34,7 +34,9 @@ const loginTemplate = () => html`
                 </form>
                 <footer class="tab-footer">
                     Don't have an account?
-                    <a class="invert" href="/register">Create one here</a>.
+                    <a class="invert" href="/Quiz-Fever/register"
+                        >Create one here</a
+                    >.
                 </footer>
             </div>
         </div>
