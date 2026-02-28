@@ -13,11 +13,16 @@ import { quizDetailsView } from "./views/details.js";
 const rootElement = document.getElementById("content");
 const navElement = document.getElementById("titlebar");
 
+const redirect = sessionStorage.redirect;
+if (redirect) {
+    delete sessionStorage.redirect;
+    history.replaceState(null, null, redirect);
+}
+
 // Establishing connection to back4app backend
 initializeBack4App().then(() => {
     console.log("App is ready");
 });
-
 
 page("*", renderContainer);
 
@@ -29,7 +34,7 @@ page("/", navView, homeView);
 page("/browse", browseView);
 page("/register", registerView);
 page("/login", loginView);
-page("/details/:id", quizDetailsView)
+page("/details/:id", quizDetailsView);
 page("/404", notFoundView);
 
 function renderContainer(ctx, next) {
