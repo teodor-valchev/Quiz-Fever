@@ -1,6 +1,6 @@
 .vscode
 node_modules
-public/keys.js
+src/public/keys.js
 
 
 *.docx
