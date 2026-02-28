@@ -1,7 +1,7 @@
 import { html, render } from "https://unpkg.com/lit-html?module";
 import { getAllQuizzes } from "../API/back4app.js";
 
-const browseTemplate = () =>
+const browseTemplate = (quizzes) =>
     html` <section id="browse">
         <header class="pad-large">
             <form class="browse-filter">
@@ -21,6 +21,47 @@ const browseTemplate = () =>
             <h1>All quizes</h1>
         </header>
 
+        <div class="pad-large alt-page">${quizzes.map(quizArticle)}</div>
+    </section>`;
+
+export const browseView = async (ctx) => {
+    render(loadingTemplate(), ctx.render);
+
+    const quizzes = await getAllQuizzes();
+
+    render(browseTemplate(quizzes), ctx.render);
+};
+
+const quizArticle = (quiz) => {
+    const title = quiz.get("title");
+    const topic = quiz.get("topic");
+    const questionCount = quiz.get("questionCount");
+    const id = quiz.id;
+
+    return html` <article class="preview layout">
+        <div class="right-col">
+            <a class="action cta" href="${id}">View Quiz</a>
+        </div>
+        <div class="left-col">
+            <h3>
+                <a class="quiz-title-link" href="${id}">${title}</a>
+            </h3>
+            <span class="quiz-topic">Topic: ${topic}</span>
+            <div class="quiz-meta">
+                <span>${questionCount} questions</span>
+                <span>|</span>
+                <span>Taken 54 times</span>
+            </div>
+        </div>
+    </article>`;
+};
+
+const loadingTemplate = () => html`
+    <section id="browse">
+        <header class="pad-large">
+            <h1>Loading quizzes...</h1>
+        </header>
+
         <div class="pad-large alt-page async">
             <div class="sk-cube-grid">
                 <div class="sk-cube sk-cube1"></div>
@@ -34,63 +75,5 @@ const browseTemplate = () =>
                 <div class="sk-cube sk-cube9"></div>
             </div>
         </div>
-
-        <div class="pad-large alt-page">
-            <article class="preview layout">
-                <div class="right-col">
-                    <a class="action cta" href="#">View Quiz</a>
-                </div>
-                <div class="left-col">
-                    <h3>
-                        <a class="quiz-title-link" href="#"
-                            >Extensible Markup Language</a
-                        >
-                    </h3>
-                    <span class="quiz-topic">Topic: Languages</span>
-                    <div class="quiz-meta">
-                        <span>15 questions</span>
-                        <span>|</span>
-                        <span>Taken 54 times</span>
-                    </div>
-                </div>
-            </article>
-
-            <article class="preview layout">
-                <div class="right-col">
-                    <a class="action cta" href="#">View Quiz</a>
-                </div>
-                <div class="left-col">
-                    <h3>
-                        <a class="quiz-title-link" href="#"
-                            >RISC Architecture</a
-                        >
-                    </h3>
-                    <span class="quiz-topic">Topic: Hardware</span>
-                    <div class="quiz-meta">
-                        <span>10 questions</span>
-                        <span>|</span>
-                        <span>Taken 107 times</span>
-                    </div>
-                </div>
-            </article>
-
-            <article class="preview layout">
-                <div class="right-col">
-                    <a class="action cta" href="#">View Quiz</a>
-                </div>
-                <div class="left-col">
-                    <h3><a class="quiz-title-link" href="#">Webpack</a></h3>
-                    <span class="quiz-topic">Topic: Tools and Software</span>
-                    <div class="quiz-meta">
-                        <span>17 questions</span>
-                        <span>|</span>
-                        <span>Taken 189 times</span>
-                    </div>
-                </div>
-            </article>
-        </div>
-    </section>`;
-
-export const browseView = (ctx) => {
-    render(browseTemplate(), ctx.render);
-};
+    </section>
+`;

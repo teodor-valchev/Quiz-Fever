@@ -5,7 +5,7 @@ async function InitializeBack4AppConnection() {
         Parse.initialize(config.appId, config.jsKey);
         Parse.serverURL = config.serverUrl;
     } catch (error) {
-        console.error("Error retrieving object: " + error.message);
+        console.error(error.message);
     }
 }
 
@@ -52,10 +52,9 @@ async function getAllQuizzes() {
         const Quizzes = Parse.Object.extend("Quizzes");
         const query = new Parse.Query(Quizzes);
 
-        query.equalTo("topic", "history");
         const results = await query.find();
 
-        console.log(results);
+
         return results;
     } catch (error) {
         alert("Error: " + error.code + " " + error.message);
