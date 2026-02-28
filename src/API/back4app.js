@@ -1,4 +1,4 @@
-import { config } from "./keys.js";
+import { config } from "../keys.js";
 
 async function InitializeBack4AppConnection() {
     try {

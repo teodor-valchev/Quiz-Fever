@@ -10,7 +10,7 @@ const homeTemplate = () => html`
                 <h1>Welcome to Quiz Fever!</h1>
                 <p>
                     Home to 157 quizzes in 12 topics.
-                    <a href="/quizzes">Browse all quizzes</a>.
+                    <a href="/browse">Browse all quizzes</a>.
                 </p>
                 <a class="action cta" href="/register"
                     >Sign in to create a quiz</a
