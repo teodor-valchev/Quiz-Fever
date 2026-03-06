@@ -9,6 +9,7 @@ import { notFoundView } from "./views/notFound.js";
 import { navView } from "./views/nav.js";
 import { browseView } from "./views/browse.js";
 import { quizDetailsView } from "./views/details.js";
+import { createView } from "./views/create.js";
 
 const rootElement = document.getElementById("content");
 const navElement = document.getElementById("titlebar");
@@ -35,6 +36,8 @@ page("/Quiz-Fever/browse", browseView);
 page("/Quiz-Fever/register", registerView);
 page("/Quiz-Fever/login", loginView);
 page("/Quiz-Fever/details/:id", quizDetailsView);
+page("/Quiz-Fever/create", createView);
+
 page("/Quiz-Fever/404", notFoundView);
 
 function renderContainer(ctx, next) {

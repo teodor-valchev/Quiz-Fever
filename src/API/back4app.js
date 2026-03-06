@@ -74,12 +74,30 @@ async function getQuizDetails(id) {
     }
 }
 
+async function createQuiz(title, topic) {
+    try {
+        const Quizzes = Parse.Object.extend("Quizzes");
+        const quiz = new Quizzes();
+
+        await quiz.set("title", title);
+        await quiz.set("topic", topic);
+
+        await quiz.save();
+
+        return quiz;
+    } catch (error) {
+        alert("Error: " + error.code + " " + error.message);
+        return null;
+    }
+}
+
 export {
     initializeBack4App,
     signUp,
     signIn,
     getAllQuizzes,
     getQuizDetails,
+    createQuiz,
     isLoggedIn,
     logout,
 };
