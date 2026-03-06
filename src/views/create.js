@@ -1,7 +1,7 @@
 import { html, render } from "https://unpkg.com/lit-html?module";
 import { createQuiz } from "../API/back4app.js";
 
-const createTemplate = (quizCreate) =>
+const createTemplate = (quizCreate, deleteAnswerHandler, addAnswerHandler) =>
     html`<section id="editor">
         <header class="pad-large">
             <h2>Questions</h2>
@@ -22,62 +22,20 @@ const createTemplate = (quizCreate) =>
                     </div>
                     <h3>Question 1</h3>
                 </div>
-                <form>
+                <form class="question-form" @submit=${questionCreateHandler}>
                     <textarea
                         class="input editor-input editor-text"
                         name="text"
                         placeholder="Enter question"
                     ></textarea>
-                    <div class="editor-input">
-                        <label class="radio">
-                            <input
-                                class="input"
-                                type="radio"
-                                name="question-1"
-                                value="0"
-                            />
-                            <i class="fas fa-check-circle"></i>
-                        </label>
 
-                        <input class="input" type="text" name="answer-0" />
-                        <button class="input submit action">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
-                    </div>
-                    <div class="editor-input">
-                        <label class="radio">
-                            <input
-                                class="input"
-                                type="radio"
-                                name="question-1"
-                                value="1"
-                            />
-                            <i class="fas fa-check-circle"></i>
-                        </label>
+                   
 
-                        <input class="input" type="text" name="answer-1" />
-                        <button class="input submit action">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
-                    </div>
                     <div class="editor-input">
-                        <label class="radio">
-                            <input
-                                class="input"
-                                type="radio"
-                                name="question-1"
-                                value="2"
-                            />
-                            <i class="fas fa-check-circle"></i>
-                        </label>
-
-                        <input class="input" type="text" name="answer-2" />
-                        <button class="input submit action">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
-                    </div>
-                    <div class="editor-input">
-                        <button class="input submit action">
+                        <button
+                            @click=${addAnswerHandler}
+                            class="input submit action"
+                        >
                             <i class="fas fa-plus-circle"></i>
                             Add answer
                         </button>
@@ -283,6 +241,50 @@ const quizCreateHandler = async (e) => {
     console.log(quiz);
 };
 
+const deleteAnswerHandler = (e) => {
+    e.preventDefault();
+    const answer = e.target.parentNode.parentNode;
+    answer.remove();
+};
+
+
+//TODO: FIX RENDERING
+const addAnswerHandler = (e) => {
+    e.preventDefault();
+    const questionForm = document.querySelector(".question-form");
+    console.log(questionForm);
+
+    const answerTemplate = () =>
+        html`<div class="editor-input">
+            <label class="radio">
+                <input class="input" type="radio" name="question-1" value="2" />
+                <i class="fas fa-check-circle"></i>
+            </label>
+
+            <input class="input" type="text" name="answer-2" />
+            <button @click=${deleteAnswerHandler} class="input submit action">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+        </div>`;
+
+    render(answerTemplate(), questionForm);
+};
+
+const questionCreateHandler = async (e) => {
+    e.preventDefault();
+
+    const data = new FormData(e.target);
+    const { title, topic } = Object.fromEntries(data);
+
+    if (!title) {
+        alert("Insert title!");
+        return;
+    }
+};
+
 export const createView = (ctx) => {
-    render(createTemplate(quizCreate), ctx.render);
+    render(
+        createTemplate(quizCreate, deleteAnswerHandler, addAnswerHandler),
+        ctx.render,
+    );
 };
